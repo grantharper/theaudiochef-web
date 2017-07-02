@@ -12,6 +12,9 @@ java -Dspring.profiles.active=<desired-profile> -jar <jar-file>
 OR export SPRING_PROFILES_ACTIVE=<desired-profile>
 java -jar <jar-file>
 
+### Run from command line
+gradle -Dspring.profiles.active=dev bootRun
+
 
 Example
 scp -i "AWSGH.pem" /c/src/AudioChefJava/web/build/libs/theaudiochefweb-0.1.0.jar ec2-user@ec2-34-200-246-136.compute-1.amazonaws.com:/tmp/theaudiochefweb-0.1.0.jar
