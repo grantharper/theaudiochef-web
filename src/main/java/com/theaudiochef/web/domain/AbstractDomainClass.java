@@ -1,4 +1,4 @@
-package com.theaudiochef.domain;
+package com.theaudiochef.web.domain;
 
 import java.util.Date;
 
@@ -16,29 +16,40 @@ public abstract class AbstractDomainClass implements DomainObject {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Integer id;
+	Long id;
 	
 	@Version
-	private Integer version;
+	private Long version;
 	
 	private Date dateCreated;
 	private Date lastUpdated;
 	
-	@Override
-	public Integer getId() {
-		return this.id;
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
 	}
 
-	@Override
-	public void setId(Integer id) {
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Integer getVersion() {
+	/**
+	 * @return the version
+	 */
+	public Long getVersion() {
 		return version;
 	}
 
-	public void setVersion(Integer version) {
+	/**
+	 * @param version the version to set
+	 */
+	public void setVersion(Long version) {
 		this.version = version;
 	}
 
