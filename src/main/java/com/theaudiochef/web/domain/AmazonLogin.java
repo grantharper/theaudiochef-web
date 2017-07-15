@@ -38,6 +38,13 @@ public class AmazonLogin extends AbstractDomainClass {
 
     @Column(name = "expire_ts")
     private LocalDateTime expireTs;
+    
+    public AmazonLogin(){}
+    
+    public AmazonLogin(User user){
+        this.user = user;
+        user.setAmazonLogin(this);
+    }
 
     /**
      * @return the userId
