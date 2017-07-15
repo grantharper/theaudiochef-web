@@ -5,10 +5,11 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.theaudiochef.web.domain.User;
+import com.theaudiochef.web.domain.AmazonLogin;
 
 @Repository
 @Transactional
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface AmazonLoginRepository extends JpaRepository<AmazonLogin, Long>{
 
+    
 }

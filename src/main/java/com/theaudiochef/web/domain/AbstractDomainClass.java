@@ -1,72 +1,96 @@
 package com.theaudiochef.web.domain;
 
-import java.util.Date;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Version;
 
 @MappedSuperclass
-public abstract class AbstractDomainClass implements DomainObject {
-
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+public abstract class AbstractDomainClass {
 	
 	@Version
 	private Long version;
 	
-	private Date dateCreated;
-	private Date lastUpdated;
+	@Column(name="create_ts")
+	private Timestamp createTs;
+	
+	@Column(name="update_ts")
+	private Timestamp updateTs;
 	
 
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	/**
-	 * @return the version
-	 */
-	public Long getVersion() {
-		return version;
-	}
+    /**
+     * @return the version
+     */
+    public Long getVersion() {
+        return version;
+    }
 
-	/**
-	 * @param version the version to set
-	 */
-	public void setVersion(Long version) {
-		this.version = version;
-	}
 
-	public Date getDateCreated() {
-		return dateCreated;
-	}
 
-	public Date getLastUpdated() {
-		return lastUpdated;
-	}
-	
-	@PreUpdate
+
+    /**
+     * @param version the version to set
+     */
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+
+
+
+    /**
+     * @return the createTs
+     */
+    public Timestamp getCreateTs() {
+        return createTs;
+    }
+
+
+
+
+    /**
+     * @param createTs the createTs to set
+     */
+    public void setCreateTs(Timestamp createTs) {
+        this.createTs = createTs;
+    }
+
+
+
+
+    /**
+     * @return the updateTs
+     */
+    public Timestamp getUpdateTs() {
+        return updateTs;
+    }
+
+
+
+
+    /**
+     * @param updateTs the updateTs to set
+     */
+    public void setUpdateTs(Timestamp updateTs) {
+        this.updateTs = updateTs;
+    }
+
+
+
+
+    @PreUpdate
 	@PrePersist
 	public void updateTimeStamps() {
-		lastUpdated = new Date();
-		if(dateCreated == null){
-			dateCreated = new Date();
+		this.updateTs = Timestamp.valueOf(LocalDateTime.now());
+		if(this.createTs == null){
+			this.createTs = Timestamp.valueOf(LocalDateTime.now());
 		}
 	}
 

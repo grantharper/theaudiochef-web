@@ -1,173 +1,128 @@
 package com.theaudiochef.web.domain;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User extends AbstractDomainClass {
 
-	private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
+    private Long userId;
 
-	private String email;
+    private String name;
 
-	@Enumerated(EnumType.STRING)
-	private AccountType accountType;
+    private String email;
 
-	private String accessToken;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "account_type")
+    private AccountType accountType;
 
-	private String authorizationCode;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private AmazonLogin amazonLogin;
 
-	private String amazonUserId;
-	private String amazonAccessToken;
-	private String amazonRefreshToken;
-	private Integer amazonExpiresIn;
-	private String amazonTokenType;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private AlexaLink alexaLink;
 
-	public User() {
-	}
+    public User() {
+    }
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * @return the userId
+     */
+    public Long getUserId() {
+        return userId;
+    }
 
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * @param userId
+     *            the userId to set
+     */
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * @return the accountType
-	 */
-	public AccountType getAccountType() {
-		return accountType;
-	}
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
 
-	/**
-	 * @param accountType the accountType to set
-	 */
-	public void setAccountType(AccountType accountType) {
-		this.accountType = accountType;
-	}
+    /**
+     * @param email
+     *            the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	/**
-	 * @return the accessToken
-	 */
-	public String getAccessToken() {
-		return accessToken;
-	}
+    /**
+     * @return the accountType
+     */
+    public AccountType getAccountType() {
+        return accountType;
+    }
 
-	/**
-	 * @param accessToken the accessToken to set
-	 */
-	public void setAccessToken(String accessToken) {
-		this.accessToken = accessToken;
-	}
+    /**
+     * @param accountType
+     *            the accountType to set
+     */
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
 
-	/**
-	 * @return the authorizationCode
-	 */
-	public String getAuthorizationCode() {
-		return authorizationCode;
-	}
+    /**
+     * @return the amazonLogin
+     */
+    public AmazonLogin getAmazonLogin() {
+        return amazonLogin;
+    }
 
-	/**
-	 * @param authorizationCode the authorizationCode to set
-	 */
-	public void setAuthorizationCode(String authorizationCode) {
-		this.authorizationCode = authorizationCode;
-	}
+    /**
+     * @param amazonLogin
+     *            the amazonLogin to set
+     */
+    public void setAmazonLogin(AmazonLogin amazonLogin) {
+        this.amazonLogin = amazonLogin;
+    }
 
-	/**
-	 * @return the amazonUserId
-	 */
-	public String getAmazonUserId() {
-		return amazonUserId;
-	}
+    /**
+     * @return the alexaLink
+     */
+    public AlexaLink getAlexaLink() {
+        return alexaLink;
+    }
 
-	/**
-	 * @param amazonUserId the amazonUserId to set
-	 */
-	public void setAmazonUserId(String amazonUserId) {
-		this.amazonUserId = amazonUserId;
-	}
-
-	/**
-	 * @return the amazonAccessToken
-	 */
-	public String getAmazonAccessToken() {
-		return amazonAccessToken;
-	}
-
-	/**
-	 * @param amazonAccessToken the amazonAccessToken to set
-	 */
-	public void setAmazonAccessToken(String amazonAccessToken) {
-		this.amazonAccessToken = amazonAccessToken;
-	}
-
-	/**
-	 * @return the amazonRefreshToken
-	 */
-	public String getAmazonRefreshToken() {
-		return amazonRefreshToken;
-	}
-
-	/**
-	 * @param amazonRefreshToken the amazonRefreshToken to set
-	 */
-	public void setAmazonRefreshToken(String amazonRefreshToken) {
-		this.amazonRefreshToken = amazonRefreshToken;
-	}
-
-	/**
-	 * @return the amazonExpiresIn
-	 */
-	public Integer getAmazonExpiresIn() {
-		return amazonExpiresIn;
-	}
-
-	/**
-	 * @param amazonExpiresIn the amazonExpiresIn to set
-	 */
-	public void setAmazonExpiresIn(Integer amazonExpiresIn) {
-		this.amazonExpiresIn = amazonExpiresIn;
-	}
-
-	/**
-	 * @return the amazonTokenType
-	 */
-	public String getAmazonTokenType() {
-		return amazonTokenType;
-	}
-
-	/**
-	 * @param amazonTokenType the amazonTokenType to set
-	 */
-	public void setAmazonTokenType(String amazonTokenType) {
-		this.amazonTokenType = amazonTokenType;
-	}
-	
-	
-	
+    /**
+     * @param alexaLink
+     *            the alexaLink to set
+     */
+    public void setAlexaLink(AlexaLink alexaLink) {
+        this.alexaLink = alexaLink;
+    }
 
 }
